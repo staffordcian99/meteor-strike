@@ -9,19 +9,18 @@
     <title>Meteor Strike!</title>
 </head>
 <body>
-    <section>
-        <div class="row home-div" id="score-div">
-           <div class="col-8 g-name-div">
-                <h1 class="g-name">Meteor Strike!</h1>
-                <p>Score: <br> 0</p>
-           </div>
-           <div class="col-4 game-div">
-                <div class="hs-div"><p>High Score: 0</p></div>
-                <button class="start-button button-play">Go!</button>
-           </div>
-       </div>
-       <canvas></canvas>
-   </section>
+    <div class="row home-div" id="score-div">
+        <div class="col-8 g-name-div">
+            <h1 class="g-name">Meteor Strike!</h1>
+            <p>Score: <br> 0</p>
+        </div>
+        <div class="col-4 game-div">
+            <div class="hs-div"><p>High Score: 0</p></div>
+            <button class="start-button button-play">Go!</button>
+        </div>
+    </div>
+    <canvas id="myCanvas" class="my-canvas"></canvas>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="./assets/scripts/game-script.js"></script>
