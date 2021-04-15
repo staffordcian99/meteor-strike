@@ -58,16 +58,70 @@
         }
     };
 
+    //creates Enemy constructor
+
+    class Enemy{
+        constructor(x, y, radius, color, velocity){
+            this.x = x
+            this.y = y
+            this.radius = radius
+            this.color = color
+            this.velocity = velocity
+        }
+
+        create(){
+            can.beginPath()
+            can.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
+            can.fillStyle = this.color
+            can.fill()
+        }
+
+        update(){
+            this.create()
+            this.x = this.x + this.velocity.x
+            this.y = this.y + this.velocity.y
+        }
+    };
+
     //creating the player 
 
     let player = new Player(canvas.width / 2 , canvas.height / 2, 15, 'white');
     
 
-    //creating and animating rockets
+    //Empty rockets and enemies arrays
     
     
     let rockets = [];
+    let enemies = [];
+
+    //Spawning enemies
+
+    function spawnEnemies(){
+        setInterval(function()
+        {   const radius = Math.random() * (12 - 2) + 2;
+            
+            let x;
+            let y;
+            
+            if (Math.random() < 0.5){
+                x = Math.random < 0.5 ? 0 - radius : canvas.width + radius;
+                y = Math.random() * canvas.height;
+            } else{
+                x = Math.random() * canvas.width;
+                y = Math.random() < 0.5 ? 0 - radius : canvas.height + radius; 
+            }
+            
+            const color = 'green'
+            
+            const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x)
+
+            const velocity = {x: Math.cos(angle), y: Math.sin(angle)}
+            
+            enemies.push(new Enemy(x, y, radius, color, velocity))} , 1000)
+    };
     
+    // Creating rockets and enemies
+
     function animate(){
         requestAnimationFrame(animate);
         
@@ -78,6 +132,28 @@
         rockets.forEach((rocket) => {
             rocket.update()
         });
+
+        enemies.forEach((enemy, index) => {
+            enemy.update()
+        
+            const dist = Math.hypot(enemy.x - player.x, enemy.y - player.y)
+
+            if (dist - enemy.radius - player.radius < 1){
+                cancelAnimationFrame(animationID)
+            }
+            
+            rockets.forEach((rocket, rocketIndex) => {
+                const dist = Math.hypot(rocket.x - enemy.x, rocket.y - enemy.y)
+
+                if (dist - enemy.radius - rocket.radius < 1) {
+                   setTimeout(() => 
+                   {enemies.splice(index, 1)
+                    rockets.splice(rocketIndex, 1)})
+                }
+            })
+        }
+
+        )
     };
 
     addEventListener('click', (event) => {
@@ -100,5 +176,8 @@
 
     })
 
+    //Calling functions
+
     animate();
+    spawnEnemies();
 })(window, document);
