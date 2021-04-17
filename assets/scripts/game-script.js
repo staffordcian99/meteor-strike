@@ -85,6 +85,36 @@
         }
     };
 
+    //Creates particle constructor
+    
+    class Particle{
+        constructor(x, y, radius, color, velocity, alpha){
+            this.x = x
+            this.y = y
+            this.radius = radius
+            this.color = color
+            this.velocity = velocity
+            this.alpha = 1
+        }
+
+        create(){
+            can.save()
+            can.globalAlpha = this.alpha
+            can.beginPath()
+            can.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
+            can.fillStyle = this.color
+            can.fill()
+            can.restore()
+        }
+
+        update(){
+            this.create()
+            this.x = this.x + this.velocity.x
+            this.y = this.y + this.velocity.y
+            this.alpha -= 0.01
+        }
+    };
+
     //creating the player 
 
     let player = new Player(canvas.width / 2 , canvas.height / 2, 20, 'white');
@@ -95,6 +125,7 @@
     
     let rockets = [];
     let enemies = [];
+    let particles = [];
 
     //Spawning enemies
 
@@ -131,9 +162,17 @@
         can.fillRect(0, 0, canvas.width, canvas.height);
         
         player.create();
+
+        particles.forEach((particle, index) => {
+            
+            if(particle.alpha <= 0){
+                particles.splice(index, 1)
+            } else {
+                particle.update()}})
+            ;
         
         rockets.forEach((rocket, index) => {
-            rocket.update()
+            rocket.update();
 
             if(
                 rocket.x + rocket.radius < 0 ||
@@ -162,8 +201,14 @@
 
                 if (dist - enemy.radius - rocket.radius < 0.1) {
 
-                    if (enemy.radius -10 > 10){
-                        enemy.radius -= 10;
+                    for (let i = 0; i < 8; i++){
+                        particles.push(new Particle(rocket.x, rocket.y, 3, enemy.color, {x: Math.random() - 0.5, y:Math.random() - 0.5}))
+                         };
+                    
+                    if (enemy.radius -10 > 5){
+                        gsap.to(enemy, {
+                            radius: enemy.radius - 10
+                        })
                         setTimeout(() => 
                         {rockets.splice(rocketIndex, 1)},0);
                     } else {
