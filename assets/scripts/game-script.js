@@ -87,7 +87,7 @@
 
     //creating the player 
 
-    let player = new Player(canvas.width / 2 , canvas.height / 2, 40, 'white');
+    let player = new Player(canvas.width / 2 , canvas.height / 2, 20, 'white');
     
 
     //Empty rockets and enemies arrays
@@ -100,7 +100,7 @@
 
     function spawnEnemies(){
         setInterval(function()
-        {   const radius = Math.random() * (30 - 5) + 5;
+        {   const radius = Math.random() * (40 - 5) + 5;
             
             let x;
             let y;
@@ -113,7 +113,7 @@
                 y = Math.random() < 0.5 ? 0 - radius : canvas.height + radius; 
             }
             
-            const color = 'green'
+            const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
             
             const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x)
 
@@ -127,12 +127,25 @@
     function animate(){
         let animationID = requestAnimationFrame(animate);
         
-        can.clearRect(0, 0, canvas.width, canvas.height);
+        can.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        can.fillRect(0, 0, canvas.width, canvas.height);
         
         player.create();
         
-        rockets.forEach((rocket) => {
+        rockets.forEach((rocket, index) => {
             rocket.update()
+
+            if(
+                rocket.x + rocket.radius < 0 ||
+                rocket.x - rocket.radius > canvas.width||
+                rocket.y + rocket.radius < 0 ||
+                rocket.y - rocket.radius > canvas.height
+             ) {
+                setTimeout(
+                    function(){
+                        rockets.splice(index, 1)
+                    }, 0)
+            }
         });
 
         enemies.forEach((enemy, index) => {
@@ -147,10 +160,17 @@
             rockets.forEach((rocket, rocketIndex) => {
                 const dist = Math.hypot(rocket.x - enemy.x, rocket.y - enemy.y)
 
-                if (dist - enemy.radius - rocket.radius < 1) {
+                if (dist - enemy.radius - rocket.radius < 0.1) {
+
+                    if (enemy.radius -10 > 10){
+                        enemy.radius -= 10;
+                        setTimeout(() => 
+                        {rockets.splice(rocketIndex, 1)},0);
+                    } else {
+
                    setTimeout(() => 
                    {enemies.splice(index, 1)
-                    rockets.splice(rocketIndex, 1)})
+                    rockets.splice(rocketIndex, 1)},0)}
                 }
             })
         }
@@ -160,20 +180,22 @@
 
     addEventListener('click', (event) => {
        
+        console.log(rockets);
+        
         const angle = Math.atan2(
             event.clientY - player.y,
             event.clientX - player.x
         );
         
         const velocity = {
-            x: Math.cos(angle),
-            y: Math.sin(angle)
+            x: Math.cos(angle) * 4,
+            y: Math.sin(angle) * 4
         };
         
         rockets.push(
         new Rocket(
             canvas.width / 2 , canvas.height / 2,
-            5, 'red', velocity
+            5, 'white', velocity
         ));
 
     })
