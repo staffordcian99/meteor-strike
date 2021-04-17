@@ -15,6 +15,8 @@
     let canvas = document.querySelector('#myCanvas');
     let can = canvas.getContext('2d');
 
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
     //creates player constructor
 
     class Player{
@@ -85,7 +87,7 @@
 
     //creating the player 
 
-    let player = new Player(canvas.width / 2 , canvas.height / 2, 15, 'white');
+    let player = new Player(canvas.width / 2 , canvas.height / 2, 40, 'white');
     
 
     //Empty rockets and enemies arrays
@@ -98,7 +100,7 @@
 
     function spawnEnemies(){
         setInterval(function()
-        {   const radius = Math.random() * (12 - 2) + 2;
+        {   const radius = Math.random() * (30 - 5) + 5;
             
             let x;
             let y;
@@ -123,7 +125,7 @@
     // Creating rockets and enemies
 
     function animate(){
-        requestAnimationFrame(animate);
+        let animationID = requestAnimationFrame(animate);
         
         can.clearRect(0, 0, canvas.width, canvas.height);
         
@@ -138,7 +140,7 @@
         
             const dist = Math.hypot(enemy.x - player.x, enemy.y - player.y)
 
-            if (dist - enemy.radius - player.radius < 1){
+            if (dist - enemy.radius - player.radius < 0.05){
                 cancelAnimationFrame(animationID)
             }
             
@@ -158,12 +160,12 @@
 
     addEventListener('click', (event) => {
        
-        let angle = Math.atan2(
-            event.clientY - canvas.height / 2,
-            event.clientX - canvas.width / 2
+        const angle = Math.atan2(
+            event.clientY - player.y,
+            event.clientX - player.x
         );
         
-        let velocity = {
+        const velocity = {
             x: Math.cos(angle),
             y: Math.sin(angle)
         };
@@ -171,7 +173,7 @@
         rockets.push(
         new Rocket(
             canvas.width / 2 , canvas.height / 2,
-            2, 'red', velocity
+            5, 'red', velocity
         ));
 
     })
