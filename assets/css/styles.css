@@ -3,22 +3,21 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: black;
+    overflow: hidden;
 }
 
-#home{
-    background-color: black;
-}
 
 /* Home page styling */
 
 .home-div {
-    margin-left: 20%;
+    margin-left: 30%;
     margin-right: 20%;
     margin-top: 10%;
     background-color: white;
     border: 5px solid grey;
     border-radius: 20%;
-    position: relative;
+    position: fixed;
     z-index: 2;
 }
 
@@ -31,11 +30,12 @@ body {
 .g-name{
     font-size: 70px;
     font-family: 'Londrina Solid';
+    color: rgb(228, 132, 7);
 }
 
 .button-1 {
-    background-color: rgb(228, 132, 7);
-    margin-top: 50%;
+    background-color: blue;
+    margin-top: 70%;
     border-radius: 20%;
 }
 
@@ -46,21 +46,33 @@ body {
     font-family: 'Londrina Solid';
 }
 
+#message {
+    font-family: 'Londrina Solid';
+    font-size: xx-large;
+    color: royalblue;
+}
+
 /*game page styling*/
+
+#score {
+    color: white;
+    position: fixed;
+    margin-left: 10px;
+    margin-top: 10px;
+    user-select: none;
+}
+
+#score span{
+    font-family: 'Londrina Solid';
+}
 
 .game-div{
     margin-top: 12%;
 }
 
-.hs-div p{
-    font-family: 'Londrina Solid';
-    font-size: x-large;
-    color: firebrick;
-}
-
 .start-button{
     background-color: rgb(228, 132, 7);
-    margin-top: 10%;
+    margin-top: 5%;
     border-radius: 20%;
     font-size: xx-large;
     font-family: 'Londrina Solid';
@@ -68,9 +80,8 @@ body {
     padding: 5% 20%; 
 }
 
-.g-name-div p {
+.game-div span {
     font-family: 'Londrina Solid';
     font-size: xx-large;
     color: royalblue;
 }
-

@@ -7,8 +7,8 @@
     });
 
     $(".button-play").click(function(){
-        $("#score-div").remove()
-    });
+        $("#score-div").hide();
+    
 
     //the game 
 
@@ -17,6 +17,12 @@
 
     canvas.width = innerWidth;
     canvas.height = innerHeight;
+   
+    //changes score during the game
+
+    let scoreChange = document.querySelector('#scoreChange');
+    let endScore = document.querySelector('#endScore');
+    
     //creates player constructor
 
     class Player{
@@ -87,6 +93,7 @@
 
     //Creates particle constructor
     
+    let friction = 0.99;
     class Particle{
         constructor(x, y, radius, color, velocity, alpha){
             this.x = x
@@ -102,13 +109,14 @@
             can.globalAlpha = this.alpha
             can.beginPath()
             can.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-            can.fillStyle = this.color
             can.fill()
             can.restore()
         }
 
         update(){
             this.create()
+            this.velocity.x *= friction
+            this.velocity.y *= friction
             this.x = this.x + this.velocity.x
             this.y = this.y + this.velocity.y
             this.alpha -= 0.01
@@ -153,10 +161,12 @@
             enemies.push(new Enemy(x, y, radius, color, velocity))} , 1000)
     };
     
-    // Creating rockets and enemies
+    // Animating Game
 
+    let animationID;
+    let score = 0;
     function animate(){
-        let animationID = requestAnimationFrame(animate);
+        animationID = requestAnimationFrame(animate);
         
         can.fillStyle = 'rgba(0, 0, 0, 0.1)';
         can.fillRect(0, 0, canvas.width, canvas.height);
@@ -192,20 +202,38 @@
         
             const dist = Math.hypot(enemy.x - player.x, enemy.y - player.y)
 
+            //Ending game
+
             if (dist - enemy.radius - player.radius < 0.05){
-                cancelAnimationFrame(animationID)
+                cancelAnimationFrame(animationID);
+                $("#score-div").show();
+                endScore.innerHTML = score;
+                scoreChange.innerHTML = 0;
             }
             
             rockets.forEach((rocket, rocketIndex) => {
+                
+                 //enemy and rocket collision
+                
                 const dist = Math.hypot(rocket.x - enemy.x, rocket.y - enemy.y)
 
                 if (dist - enemy.radius - rocket.radius < 0.1) {
 
-                    for (let i = 0; i < 8; i++){
-                        particles.push(new Particle(rocket.x, rocket.y, 3, enemy.color, {x: Math.random() - 0.5, y:Math.random() - 0.5}))
+                    // creating explosions
+                    
+                    for (let i = 0; i < enemy.radius*2; i++){
+                        particles.push(new Particle(rocket.x, rocket.y, 1, 'white', {x: (Math.random() - 0.5) * 7, y:(Math.random() - 0.5) * 7}, 1))
                          };
                     
                     if (enemy.radius -10 > 5){
+                        
+                        //Increase the score
+
+                        score += 50;
+                        scoreChange.innerHTML = score;
+
+                        //shrink enemy
+
                         gsap.to(enemy, {
                             radius: enemy.radius - 10
                         })
@@ -213,15 +241,24 @@
                         {rockets.splice(rocketIndex, 1)},0);
                     } else {
 
-                   setTimeout(() => 
-                   {enemies.splice(index, 1)
-                    rockets.splice(rocketIndex, 1)},0)}
+                    //Score change
+
+                    score += 100;
+                    scoreChange.innerHTML = score;
+        
+                    //Remove enemy
+
+                    setTimeout(() => 
+                    {enemies.splice(index, 1)
+                     rockets.splice(rocketIndex, 1)},0)}
                 }
             })
         }
 
         )
     };
+
+    //launching rockets
 
     addEventListener('click', (event) => {
        
@@ -248,5 +285,6 @@
     //Calling functions
 
     animate();
-    spawnEnemies();
+    spawnEnemies(); 
+});
 })(window, document);
