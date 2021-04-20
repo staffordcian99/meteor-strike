@@ -258,7 +258,7 @@
         )
     };
 
-    //launching rockets
+    //launching rockets using mouse click
 
     addEventListener('click', (event) => {
        
@@ -280,7 +280,32 @@
             5, 'white', velocity
         ));
 
+    });
+
+    // Launching rockets when touchscreen is touched
+
+    addEventListener('touchstart', (event) => {
+       
+        console.log(rockets);
+        
+        const angle = Math.atan2(
+            event.clientY - player.y,
+            event.clientX - player.x
+        );
+        
+        const velocity = {
+            x: Math.cos(angle) * 4,
+            y: Math.sin(angle) * 4
+        };
+        
+        rockets.push(
+        new Rocket(
+            canvas.width / 2 , canvas.height / 2,
+            5, 'white', velocity
+        ));
+
     })
+
 
     //Calling functions
 
