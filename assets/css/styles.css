@@ -19,6 +19,7 @@ body {
     border-radius: 20%;
     position: fixed;
     z-index: 2;
+    padding: 5%;
 }
 
 .g-name-div {
@@ -84,4 +85,34 @@ body {
     font-family: 'Londrina Solid';
     font-size: xx-large;
     color: royalblue;
+}
+
+
+
+@media screen and (max-width: 1125px){
+   .home-div{
+       margin-top: 20%;
+       margin-bottom: 33%;
+       margin-left: 25%;
+   }
+}
+
+@media screen and (max-width: 767px){
+   .home-div{
+        margin-top: 40%;
+        
+   }
+
+   #message{
+       display: none;
+   }
+
+   .g-name {
+       font-size: 50px;
+   }
+
+   .g-name-div {
+       padding-bottom: 0;
+       margin-bottom: 0;
+   }
 }
