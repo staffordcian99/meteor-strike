@@ -14,10 +14,14 @@
 
  # UX
  ### The ideal user:
+Is a person who:
+* Has free time.
+* wants to relax.
+* enjoys simple games.
+* wants to have fun.
  
-
  ### Visitors to this website are searching for:
- 
+ A game which is easy to use and fun to play 
 
  ### This project caters for these needs by:
  
