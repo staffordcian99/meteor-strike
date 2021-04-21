@@ -1,45 +1,69 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Meteor Strike
+## A HTML canvas and javascript game
+ This is a game built using javascript, the primary goal of this website is for people to come play the game and have fun.
 
-Welcome USER_NAME,
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+ ### The Creator Goals of This Website Are:
+ * To create a game that is simple to understand and play.
+ * To create a game that is fun and worth giving up time to play.
+ * To create a game that looks professional and runs smoothly.
 
-## Gitpod Reminders
+ ### The User Goals of This Website Are:
+ * To play a game which is simple and fun.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
 
-`python3 -m http.server`
+ # UX
+ ### The ideal user:
+ 
 
-A blue button should appear to click: *Make Public*,
+ ### Visitors to this website are searching for:
+ 
 
-Another blue button should appear to click: *Open Browser*.
+ ### This project caters for these needs by:
+ 
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+ ## User Stories
 
-A blue button should appear to click: *Make Public*,
 
-Another blue button should appear to click: *Open Browser*.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+# Features
 
-## Updates Since The Instructional Video
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+## Existing Features
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+## Features to implement in the future:
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+# Technologies Used:
+* This Website was built using the HTML ,CSS and javascript programming languages.
+*  [Gitpod](https://www.gitpod.io/) was the IDE used during the development of this project.
+* [Bootstrap Cdn](https://getbootstrap.com/) was used to simplify the structure of the game and to easily make the game responsive.
+* [Google Fonts](https://fonts.google.com/) was used to style the games fonts.
+* [jQuery]()
+* [Gsap]()
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+# Testing
+The testing information can be found in a seperate [TESTING.md](TESTING.md) file. 
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+# Deployment
+This project was developed using [Gitpod IDE](https://www.gitpod.io/), committed to git and pushed to GitHub using the terminal.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+To deploy this page to GitHub Pages from its [GitHub repository](https://github.com/staffordcian99/MS1-User_centric_frontend_development), the following steps were taken:
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+1. Log into [GitHub](github).
+2. From the list of repositories on the screen, select [staffordcian99/meteor-strike](https://github.com/staffordcian99/meteor-strike).
+3. From the menu items near the top of the page, select Settings.
+4. Scroll down to the GitHub Pages section.
+5. Under Source click the drop-down menu labelled None and select Master Branch
+6. On selecting Master Branch the page is automatically refreshed, the website is now deployed.
+7. Scroll back down to the GitHub Pages section to retrieve the link to the deployed website.
 
---------
+At the moment of submitting this Milestone project the Development Branch and Master Branch are identical.
 
-Happy coding!
+# Credits
+## Content
+
+
+
+## Code 
+
