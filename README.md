@@ -29,9 +29,8 @@ Is a person who:
 
 ## User Stories
 1. As a user, I want to be able to easily start the game.
-2. As a user, I want the game to be enjoyable.
+2. As a user, I want the game to be functional.
 3. As a user, I want to keep track of my score and improve at the game.
-4. As a user, I want to compete with my friends.
 
 # Features
 ## Existing Features:
@@ -91,9 +90,8 @@ To deploy this page to GitHub Pages from its [GitHub repository](https://github.
 At the moment of submitting this Milestone project the Development Branch and Master Branch are identical.
 
 # Credits
-## Content
+All content and code within this project was written by me. Altough I have not copied and pasted anybody elses code into this project, 
+I have used [W3Schools](https://www.w3schools.com/) during the course of the project for revision and tips while writing javascript code.
 
 
-
-## Code 
 
