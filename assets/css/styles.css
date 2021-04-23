@@ -40,7 +40,7 @@ body {
     border-radius: 20%;
 }
 
-.button-1 a {
+ .button-1 span{  
     text-decoration: none;
     color: white;
     font-size: xx-large;

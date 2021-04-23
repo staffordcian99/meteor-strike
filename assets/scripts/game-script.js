@@ -1,9 +1,9 @@
 ;(function (window, document, undefined) {
 	$(".button-play").mouseenter(function(){
-        $(".button-play").css("background-color", "coral")
+        $(".button-play").css("background-color", "coral");
     });
     $(".button-play").mouseleave(function(){
-        $(".button-play").css("background-color", "rgb(228, 132, 7)")
+        $(".button-play").css("background-color", "rgb(228, 132, 7)");
     });
 
     $(".button-play").click(function(){
@@ -27,101 +27,101 @@
 
     class Player{
         constructor(x, y, radius, color){
-            this.x = x
-            this.y = y
-            this.radius = radius
-            this.color = color
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.color = color;
         }
 
         create(){
-            can.beginPath()
-            can.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-            can.fillStyle = this.color
-            can.fill()
+            can.beginPath();
+            can.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            can.fillStyle = this.color;
+            can.fill();
         }
-    };
+    }
 
     //creates rocket constructor
 
     class Rocket{
         constructor(x, y, radius, color, velocity){
-            this.x = x
-            this.y = y
-            this.radius = radius
-            this.color = color
-            this.velocity = velocity
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.color = color;
+            this.velocity = velocity;
         }
 
         create(){
-            can.beginPath()
-            can.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-            can.fillStyle = this.color
-            can.fill()
+            can.beginPath();
+            can.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            can.fillStyle = this.color;
+            can.fill();
         }
 
         update(){
-            this.create()
-            this.x = this.x + this.velocity.x
-            this.y = this.y + this.velocity.y
+            this.create();
+            this.x = this.x + this.velocity.x;
+            this.y = this.y + this.velocity.y;
         }
-    };
+    }
 
     //creates Enemy constructor
 
     class Enemy{
         constructor(x, y, radius, color, velocity){
-            this.x = x
-            this.y = y
-            this.radius = radius
-            this.color = color
-            this.velocity = velocity
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.color = color;
+            this.velocity = velocity;
         }
 
         create(){
-            can.beginPath()
-            can.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-            can.fillStyle = this.color
-            can.fill()
+            can.beginPath();
+            can.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            can.fillStyle = this.color;
+            can.fill();
         }
 
         update(){
-            this.create()
-            this.x = this.x + this.velocity.x
-            this.y = this.y + this.velocity.y
+            this.create();
+            this.x = this.x + this.velocity.x;
+            this.y = this.y + this.velocity.y;
         }
-    };
+    }
 
     //Creates particle constructor
     
     let friction = 0.99;
     class Particle{
         constructor(x, y, radius, color, velocity, alpha){
-            this.x = x
-            this.y = y
-            this.radius = radius
-            this.color = color
-            this.velocity = velocity
-            this.alpha = 1
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.color = color;
+            this.velocity = velocity;
+            this.alpha = 1;
         }
 
         create(){
-            can.save()
-            can.globalAlpha = this.alpha
-            can.beginPath()
-            can.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-            can.fill()
-            can.restore()
+            can.save();
+            can.globalAlpha = this.alpha;
+            can.beginPath();
+            can.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            can.fill();
+            can.restore();
         }
 
         update(){
-            this.create()
-            this.velocity.x *= friction
-            this.velocity.y *= friction
-            this.x = this.x + this.velocity.x
-            this.y = this.y + this.velocity.y
-            this.alpha -= 0.01
+            this.create();
+            this.velocity.x *= friction;
+            this.velocity.y *= friction;
+            this.x = this.x + this.velocity.x;
+            this.y = this.y + this.velocity.y;
+            this.alpha -= 0.01;
         }
-    };
+    }
 
     //creating the player 
 
@@ -154,12 +154,12 @@
             
             const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
             
-            const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x)
+            const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x);
 
-            const velocity = {x: Math.cos(angle), y: Math.sin(angle)}
+            const velocity = {x: Math.cos(angle), y: Math.sin(angle)};
             
-            enemies.push(new Enemy(x, y, radius, color, velocity))} , 1000)
-    };
+            enemies.push(new Enemy(x, y, radius, color, velocity));} , 1000);
+    }
     
     // Animating Game
 
@@ -176,10 +176,9 @@
         particles.forEach((particle, index) => {
             
             if(particle.alpha <= 0){
-                particles.splice(index, 1)
+                particles.splice(index, 1);
             } else {
-                particle.update()}})
-            ;
+                particle.update();}});
         
         rockets.forEach((rocket, index) => {
             rocket.update();
@@ -192,15 +191,15 @@
              ) {
                 setTimeout(
                     function(){
-                        rockets.splice(index, 1)
-                    }, 0)
+                        rockets.splice(index, 1);
+                    }, 0);
             }
         });
 
         enemies.forEach((enemy, index) => {
-            enemy.update()
+            enemy.update();
         
-            const dist = Math.hypot(enemy.x - player.x, enemy.y - player.y)
+            const dist = Math.hypot(enemy.x - player.x, enemy.y - player.y);
 
             //Ending game
 
@@ -215,15 +214,15 @@
                 
                  //enemy and rocket collision
                 
-                const dist = Math.hypot(rocket.x - enemy.x, rocket.y - enemy.y)
+                const dist = Math.hypot(rocket.x - enemy.x, rocket.y - enemy.y);
 
                 if (dist - enemy.radius - rocket.radius < 0.1) {
 
                     // creating explosions
                     
                     for (let i = 0; i < enemy.radius*2; i++){
-                        particles.push(new Particle(rocket.x, rocket.y, 1, 'white', {x: (Math.random() - 0.5) * 7, y:(Math.random() - 0.5) * 7}, 1))
-                         };
+                        particles.push(new Particle(rocket.x, rocket.y, 1, 'white', {x: (Math.random() - 0.5) * 7, y:(Math.random() - 0.5) * 7}, 1));
+                         }
                     
                     if (enemy.radius -10 > 5){
                         
@@ -236,9 +235,9 @@
 
                         gsap.to(enemy, {
                             radius: enemy.radius - 10
-                        })
+                        });
                         setTimeout(() => 
-                        {rockets.splice(rocketIndex, 1)},0);
+                        {rockets.splice(rocketIndex, 1);},0);
                     } else {
 
                     //Score change
@@ -249,14 +248,14 @@
                     //Remove enemy
 
                     setTimeout(() => 
-                    {enemies.splice(index, 1)
-                     rockets.splice(rocketIndex, 1)},0)}
+                    {enemies.splice(index, 1);
+                     rockets.splice(rocketIndex, 1);},0);}
                 }
-            })
+            });
         }
 
-        )
-    };
+        );
+    }
 
     //launching rockets using mouse click
 
@@ -304,7 +303,7 @@
             5, 'white', velocity
         ));
 
-    })
+    });
 
 
     //Calling functions
